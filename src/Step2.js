@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import {useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FormContext } from './FormContext';
 
 const Step2 = () => {
-    const [telefon, setTelefon] = useState('');
-    const [mail, setMail] = useState('');
+    const { formData, setFormData } = useContext(FormContext);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const validate = () => {
         const newErrors = {};
-        if (!/^\d{9}$/.test(telefon)) {
+        if (!/^\d{9}$/.test(formData.telefon)) {
             newErrors.telefon = 'Numer telefonu powinien mieć 9 cyfr.';
         }
-        if (!/\S+@\S+\.\S+/.test(mail)) {
+        if (!/\S+@\S+\.\S+/.test(formData.mail)) {
             newErrors.mail = 'Wprowadź poprawny adres e-mail.';
         }
         return newErrors;
@@ -22,7 +22,7 @@ const Step2 = () => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length === 0) {
-            console.log('Formularz poprawny:', { telefon, mail });
+            console.log('Formularz poprawny:', formData);
             navigate('/form3');
         } else {
             setErrors(validationErrors);
@@ -38,8 +38,8 @@ const Step2 = () => {
                 type="text"
                 id="telefon"
                 placeholder="000000000"
-                value={telefon}
-                onChange={(e) => setTelefon(e.target.value)}
+                value={formData.telefon}
+                onChange={(e) => setFormData({ ...formData, telefon: e.target.value })}
             /><br /><br />
             {errors.telefon && <span className="error">{errors.telefon}</span>}
             <br /><br />
@@ -49,8 +49,8 @@ const Step2 = () => {
                 type="email"
                 id="mail"
                 placeholder="przykladowy@email.com"
-                value={mail}
-                onChange={(e) => setMail(e.target.value)}
+                value={formData.mail}
+                onChange={(e) => setFormData({ ...formData, mail: e.target.value })}
             /><br /><br />
             
             {errors.mail && <span className="error">{errors.mail}</span>}

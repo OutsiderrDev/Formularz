@@ -21,8 +21,16 @@ code {
   background-color: rgb(235, 237, 240);
   border-radius: 3%;
   box-shadow: 1px 3px 3px 8px grey;
+  text-align: center;
 }
 
+.formBody h1{
+  padding-top: 15%;
+  color: rgb(59, 54, 54);
+}
+.formBody  p{
+  font-size: 20px;
+}
 .formStep{
   text-align: center;  
 }

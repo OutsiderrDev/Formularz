@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FormContext } from './FormContext';
 
 const Step1 = () => {
-    const [imie, setImie] = useState('');
-    const [nazwisko, setNazwisko] = useState('');
+    const { formData, setFormData } = useContext(FormContext);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const validate = () => {
         const newErrors = {};
-        if (!imie) {
+        if (!formData.imie) {
             newErrors.imie = 'Imię jest wymagane.';
         }
-        if (!nazwisko) {
+        if (!formData.nazwisko) {
             newErrors.nazwisko = 'Nazwisko jest wymagane.';
         }
         return newErrors;
@@ -22,7 +22,7 @@ const Step1 = () => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length === 0) {
-            console.log('Formularz poprawny:', { imie, nazwisko });
+            console.log('Formularz poprawny:', formData);
             navigate('/form2');
         } else {
             setErrors(validationErrors);
@@ -39,8 +39,8 @@ const Step1 = () => {
                 type="text"
                 id="imie"
                 placeholder="np. Jan"
-                value={imie}
-                onChange={(e) => setImie(e.target.value)}
+                value={formData.imie}
+                onChange={(e) => setFormData({ ...formData, imie: e.target.value })}
             /><br /><br />
             {errors.imie && <span className="error">{errors.imie}</span>}
             <br /><br />
@@ -50,8 +50,8 @@ const Step1 = () => {
                 type="text"
                 id="nazwisko"
                 placeholder="np. Kowalski"
-                value={nazwisko}
-                onChange={(e) => setNazwisko(e.target.value)}
+                value={formData.nazwisko}
+                onChange={(e) => setFormData({ ...formData, nazwisko: e.target.value })}
             /><br /><br />
             {errors.nazwisko && <span className="error">{errors.nazwisko}</span>}
             <br /><br />
