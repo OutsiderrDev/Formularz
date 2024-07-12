@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.formBody{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  width: 25vw;
+  height: 55vh;
+  background-color: rgb(235, 237, 240);
+  border-radius: 3%;
+  box-shadow: 1px 3px 3px 8px grey;
+}
+
+.formStep{
+  text-align: center;  
+}
+.formStep h1{
+  padding-top: 15%;
+  color: rgb(59, 54, 54);
+}
+.formStep h2{
+  color: rgb(59, 54, 54);
+}
+.formStep label{
+  font-size: 20px;
+  color: rgb(59, 54, 54);
+}
+.formStep input{
+  text-align: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin-top: 0.5vh;
+  color: rgb(59, 54, 54);
+}
+.btn{
+  margin-top: 2.5vh;
+  padding: 6px;
+  width: 8vw;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px 3px grey;
+  background-color: #149cf7;
+}
+
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
